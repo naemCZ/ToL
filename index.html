@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tower of London</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <!-- Úvodní obrazovka -->
+    <section id="screen-setup" class="screen">
+      <h1>Tower of London</h1>
+      <p class="lead">Kognitivní test plánování. Úkolem je přeskládat kuličky tak, aby odpovídaly cílovému stavu, a to na co nejméně tahů.</p>
+
+      <div class="card">
+        <label class="field">
+          <span>ID účastníka</span>
+          <input id="participant" type="text" placeholder="např. P001" autocomplete="off">
+        </label>
+
+        <div class="field">
+          <span>Sada testů</span>
+          <div class="row">
+            <strong id="set-name"></strong>
+            <span id="set-info" class="muted"></span>
+          </div>
+          <div class="row">
+            <label class="button secondary">
+              Načíst sadu ze souboru (.json)
+              <input id="set-file" type="file" accept=".json,application/json" hidden>
+            </label>
+            <button id="set-default" class="secondary" type="button">Výchozí sada</button>
+          </div>
+          <ul id="set-errors" class="errors" hidden></ul>
+        </div>
+
+        <label class="check"><input id="opt-shuffle" type="checkbox"> Náhodné pořadí testů (cvičné úlohy jsou vždy první)</label>
+        <label class="check"><input id="opt-counter" type="checkbox" checked> Zobrazovat účastníkovi počet tahů</label>
+        <label class="check"><input id="opt-min" type="checkbox" checked> Zobrazovat minimální počet tahů</label>
+
+        <button id="btn-start" class="primary" type="button">Spustit test</button>
+      </div>
+
+      <div class="card">
+        <h2>Uložené výsledky</h2>
+        <p class="muted">Výsledky se po každém pokusu ukládají v tomto prohlížeči, takže se neztratí ani po zavření stránky. Export je ve formátu CSV (oddělovač středník, otevře se přímo v Excelu).</p>
+        <p id="stored-info"></p>
+        <p id="sync-info" class="muted"></p>
+        <div class="row"><button id="btn-sync" class="secondary" type="button" hidden>Odeslat čekající výsledky</button></div>
+        <div class="row">
+          <button id="btn-export-all" class="secondary" type="button">Exportovat vše (CSV)</button>
+          <button id="btn-export-json" class="secondary" type="button">Exportovat vše (JSON)</button>
+          <button id="btn-clear" class="danger" type="button">Smazat uložené výsledky</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Obrazovka úlohy -->
+    <section id="screen-task" class="screen" hidden>
+      <header class="task-header">
+        <span id="trial-label"></span>
+        <span id="trial-status"></span>
+      </header>
+      <div class="boards">
+        <figure class="board goal">
+          <figcaption>Cílový stav</figcaption>
+          <svg id="goal-board" viewBox="0 0 360 230" aria-label="Cílový stav"></svg>
+        </figure>
+        <figure class="board work">
+          <figcaption>Tvoje kuličky <span class="hint">(klikni kamkoli nad kolík: vezmi kuličku, klikni nad jiný kolík: polož ji)</span></figcaption>
+          <svg id="work-board" viewBox="0 0 360 230" aria-label="Pracovní deska"></svg>
+        </figure>
+      </div>
+      <footer class="task-footer">
+        <button id="btn-skip" class="secondary" type="button">Vzdát úlohu</button>
+        <button id="btn-abort" class="danger" type="button">Ukončit test</button>
+      </footer>
+    </section>
+
+    <!-- Mezi pokusy -->
+    <section id="screen-between" class="screen" hidden>
+      <div class="card center">
+        <h2 id="between-title"></h2>
+        <p id="between-text"></p>
+        <button id="btn-next" class="primary" type="button">Další úloha</button>
+      </div>
+    </section>
+
+    <!-- Konec -->
+    <section id="screen-end" class="screen" hidden>
+      <h1>Hotovo</h1>
+      <p class="lead">Děkujeme, test je u konce.</p>
+      <div class="card">
+        <h2>Výsledky této relace</h2>
+        <div class="table-wrap"><table id="results-table"></table></div>
+        <p id="sync-info-end" class="muted"></p>
+        <div class="row">
+          <button id="btn-export-session" class="primary" type="button">Exportovat tuto relaci (CSV)</button>
+          <button id="btn-home" class="secondary" type="button">Zpět na úvod</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/tol.js"></script>
+  <script src="js/tests.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

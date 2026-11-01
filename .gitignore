@@ -1,0 +1,15 @@
+# Exporty výsledků – data účastníků do repozitáře nepatří
+*.csv
+tol_vysledky_*.json
+tol_*.json
+
+# Systémové a editorové soubory
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Lokální nastavení Claude Code
+.claude/settings.local.json

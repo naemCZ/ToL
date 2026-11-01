@@ -1,0 +1,10 @@
+{
+  "name": "Vlastní sada – příklad",
+  "capacities": [3, 2, 1],
+  "tests": [
+    { "id": "P1", "practice": true, "start": [["R", "G"], ["B"], []], "goal": [["R"], ["B", "G"], []] },
+    { "id": "A1", "start": [["R", "G"], ["B"], []], "goal": [["G"], ["B"], ["R"]] },
+    { "id": "A2", "start": [["G", "B", "R"], [], []], "goal": [["R"], ["B"], ["G"]], "maxMoves": 10 },
+    { "id": "A3", "start": [["B"], ["R", "G"], []], "goal": [["G", "R", "B"], [], []], "timeLimitSec": 60 }
+  ]
+}
